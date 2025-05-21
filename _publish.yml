@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 963ca065-9f45-4e89-b2eb-97d49645305e
+      url: 'https://magyaryistvan.hu'

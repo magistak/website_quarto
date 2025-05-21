@@ -3,6 +3,14 @@
     "about.html": "34c6bfb5"
   },
   "index.qmd": {
-    "index.html": "5334ac3a"
+    "index.html": "5334ac3a",
+    "index.tex": "a3d078a1"
+  },
+  "links.qmd": {
+    "links.html": "6176a9a3"
+  },
+  "cv.qmd": {
+    "cv.html": "33ba8b2f",
+    "cv.tex": "28facc75"
   }
 }
