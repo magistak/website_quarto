@@ -150,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
 📍 Budapest, Hungary<br>
 📧 magyary.istvan@brc.hu<br>
 📞 +36 30 226 2205<br>
-<a href="https://magyaryistvan.hu">Website</a> | <a href="https://www.linkedin.com/in/istvan-magyary/">LinkedIn</a> | <a href="https://github.com/magistak">GitHub</a></p>
+<a href="https://magyaryistvan.hu">Website</a> | <a href="https://www.linkedin.com/in/istvan-magyary/">LinkedIn</a> | <a href="https://github.com/magistak">GitHub</a> | <a href="https://medium.com/@magistak">Medium</a> | <a href="https://coff.ee/magyary">Buy me a coffee</a></p>
 <hr>
 <section id="education" class="level2">
 <h2 class="anchored" data-anchor-id="education">🎓 Education</h2>
@@ -313,7 +313,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/magyaryistvan\.hu");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
