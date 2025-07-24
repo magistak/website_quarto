@@ -1,21 +1,37 @@
 ---
-title: "Welcome"
 format:
   html: default
   pdf: default
 ---
 
-[Download as PDF](index.pdf)
+::: {.content-visible when-format="html"}
+
+# Welcome to My site!
+
+[Download my CV](index.pdf)
+
+:::
 
 # István Gellért Magyary
 
+::: {.columns}
+
+::: {.column width="40%"}
+![](images/me.jpeg){.img-fluid}
+:::
+
+::: {.column width="60%"}
 **MSc Bioinformatics Student**  
 📍 Budapest, Hungary  
 📧 magyary.istvan@brc.hu  
 📞 +36 30 226 2205  
 [Website](https://magyaryistvan.hu) | [LinkedIn](https://www.linkedin.com/in/istvan-magyary/) | [GitHub](https://github.com/magistak) | [Medium](https://medium.com/@magistak) | [Buy me a coffee](https://coff.ee/magyary)
+:::
+
+:::
 
 ---
+
 
 ## 🎓 Education
 
