@@ -5,6 +5,14 @@ project:
 
 website:
   title: "István Magyary"
+  favicon: favicon.ico
+  twitter-card: true
+  open-graph: true
+  google-analytics:
+    tracking-id: "G-3BVSFTG6L3"
+    anonymize-ip: true
+  cookie-consent: 
+    palette: dark
   navbar:
     left:
       - href: index.qmd
@@ -13,7 +21,9 @@ website:
 
 format:
   html:
-    theme: quartz
+    theme: 
+      light: quartz
+      dark: darkly
     css: styles.css
     toc: true
 

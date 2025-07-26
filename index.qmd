@@ -17,7 +17,7 @@ format:
 ::: {.columns}
 
 ::: {.column width="40%"}
-![](images/me.jpeg){.img-fluid}
+![](images/me_circle.png){.img-fluid}
 :::
 
 ::: {.column width="60%"}
