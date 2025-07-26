@@ -7,9 +7,13 @@
     "preview": "quarto preview"
   },
   "devDependencies": {
-    "netlify-plugin-quarto": "^0.0.4"
+    "@quarto/netlify-plugin-quarto": "^0.0.5"
   },
-  "keywords": ["quarto", "website", "blog"],
+  "keywords": [
+    "quarto",
+    "website",
+    "blog"
+  ],
   "author": "István Magyary",
   "license": "MIT"
 }
