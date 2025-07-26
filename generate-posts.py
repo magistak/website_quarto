@@ -164,8 +164,6 @@ format: html
 
 To view all posts on Medium, visit [medium.com/@magistak](https://medium.com/@magistak).
 
-📚 [**Browse all posts**](posts/) organized with search and filtering.
-
 ## Recent Posts
 
 {posts_content}
