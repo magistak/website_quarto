@@ -5,8 +5,6 @@ format: html
 
 To view all posts on Medium, visit [medium.com/@magistak](https://medium.com/@magistak).
 
-📚 [**Browse all posts**](posts/) organized with search and filtering.
-
 ## Recent Posts
 
 - [**Search for bisulfite data**](posts/post-search-for-bisulfite-data.html) - *2025-07-22*  
