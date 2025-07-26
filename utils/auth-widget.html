@@ -63,9 +63,26 @@
             window.netlifyIdentity.init();
             createAuthUI();
             
-            // Listen for auth state changes
-            ['login', 'logout', 'init'].forEach(event => {
-                window.netlifyIdentity.on(event, updateAuthUI);
+            // Listen for all relevant auth state changes
+            ['login', 'logout', 'init', 'open', 'close', 'error'].forEach(event => {
+                window.netlifyIdentity.on(event, (user) => {
+                    // Add different delays based on event type for OAuth compatibility
+                    const delay = event === 'close' ? 500 : event === 'login' ? 200 : 0;
+                    setTimeout(() => updateAuthUI(user), delay);
+                });
+            });
+            
+            // Handle page visibility changes (for OAuth redirects)
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    // Page became visible again (potentially after OAuth redirect)
+                    setTimeout(updateAuthUI, 300);
+                }
+            });
+            
+            // Handle window focus (for OAuth popup returns)
+            window.addEventListener('focus', function() {
+                setTimeout(updateAuthUI, 200);
             });
         }
     });
@@ -87,16 +104,24 @@
         }, 100);
     }
     
-    function updateAuthUI() {
+    function updateAuthUI(user) {
         const container = document.getElementById('custom-auth-container');
         if (!container) return;
         
-        const user = window.netlifyIdentity.currentUser();
+        // Get current user if not passed as parameter
+        const currentUser = user || window.netlifyIdentity.currentUser();
         
-        if (user) {
+        if (currentUser) {
+            // Handle different user metadata structures from various OAuth providers
+            const displayName = currentUser.user_metadata?.full_name || 
+                               currentUser.user_metadata?.name || 
+                               currentUser.app_metadata?.full_name ||
+                               currentUser.email?.split('@')[0] ||
+                               'User';
+            
             container.innerHTML = `
                 <div class="auth-buttons">
-                    <span class="user-info">Hello, ${user.user_metadata.full_name || user.email}!</span>
+                    <span class="user-info">Hello, ${displayName}!</span>
                     <button class="auth-btn logout" onclick="window.netlifyIdentity.logout()">Logout</button>
                 </div>`;
         } else {
