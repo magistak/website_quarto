@@ -6,6 +6,12 @@ project:
 website:
   title: "István Magyary"
   favicon: images/favicon.ico
+  announcement:
+    icon: cash-coin
+    dismissable: false
+    content: "**Hi!** - if you like my content you can buy me a coffee at [coff.ee/magyary](https://coff.ee/magyary)."
+    type: primary
+    position: below-navbar
   navbar:
     left:
       - href: index.html
@@ -21,12 +27,7 @@ website:
     palette: dark
   page-footer: 
     left: "Created by István Magyary"
-    right: "© 2025"
-  announcement: 
-    icon: cash-coin
-    content: "**Hi!** - if you like my content you can buy me a coffe at [coff.ee/magyary](https://coff.ee/magyary)."
-    type: primary
-    position: below-navbar
+    right: "© 2025" 
 
 format:
   html:
