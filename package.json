@@ -1,0 +1,15 @@
+{
+  "name": "website-quarto",
+  "version": "1.0.0",
+  "description": "István Magyary's personal website built with Quarto",
+  "scripts": {
+    "build": "quarto render",
+    "preview": "quarto preview"
+  },
+  "devDependencies": {
+    "netlify-plugin-quarto": "^0.0.4"
+  },
+  "keywords": ["quarto", "website", "blog"],
+  "author": "István Magyary",
+  "license": "MIT"
+}

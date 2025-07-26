@@ -9,7 +9,7 @@ website:
   announcement:
     icon: cash-coin
     dismissable: false
-    content: "**Hi!** - if you like my content you can buy me a coffee at [coff.ee/magyary](https://coff.ee/magyary)."
+    content: "**Hi there!** - if you like my content you can buy me a coffee at [coff.ee/magyary](https://coff.ee/magyary)."
     type: primary
     position: below-navbar
   navbar:
