@@ -1,5 +1,6 @@
 [build]
 publish = "_site"
+command = "./netlify.sh"
 
 [build.environment]
 QUARTO_VERSION = "v1.7.32"
