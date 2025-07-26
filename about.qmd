@@ -1,14 +1,15 @@
 ---
 format:
   html: default
-  pdf: default
+  pdf:
+    output-file: istvan_magyary_cv.pdf
 ---
 
 ::: {.content-visible when-format="html"}
 
 # Welcome to My site!
 
-[Download my CV](index.pdf)
+[Download my CV](istvan_magyary_cv.pdf){.btn .btn-primary .mb-3}
 
 :::
 
@@ -25,7 +26,7 @@ format:
 📍 Budapest, Hungary  
 📧 magyary.istvan@brc.hu  
 📞 +36 30 226 2205  
-[Website](https://magyaryistvan.hu) | [LinkedIn](https://www.linkedin.com/in/istvan-magyary/) | [GitHub](https://github.com/magistak) | [Medium](https://medium.com/@magistak) | [Buy me a coffee](https://coff.ee/magyary)
+[Website](https://magyaryistvan.hu){.btn .btn-secondary .btn-sm .align-middle} | [LinkedIn](https://www.linkedin.com/in/istvan-magyary/){.btn .btn-secondary .btn-sm .align-middle} | [GitHub](https://github.com/magistak){.btn .btn-secondary .btn-sm .align-middle} | [Medium](https://medium.com/@magistak){.btn .btn-secondary .btn-sm .align-middle} | [Buy me a coffee](https://coff.ee/magyary){.btn .btn-secondary .btn-sm .align-middle}
 :::
 
 :::

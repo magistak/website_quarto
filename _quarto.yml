@@ -9,7 +9,7 @@ website:
   announcement:
     icon: cash-coin
     dismissable: false
-    content: "**Hi there!** - if you like my content you can buy me a coffee at [coff.ee/magyary](https://coff.ee/magyary)."
+    content: "**Hi there!** - if you like my content you can buy me a coffee at [coff.ee/magyary](https://coff.ee/magyary){.btn .btn-primary .btn-sm .align-middle}."
     type: primary
     position: below-navbar
   navbar:
@@ -26,7 +26,7 @@ website:
   cookie-consent: 
     palette: dark
   page-footer: 
-    left: "Created by István Magyary"
+    left: "Created by István Magyary using Quarto"
     right: "© 2025" 
 
 format:
