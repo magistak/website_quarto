@@ -6,7 +6,7 @@ set -e
 # Variables
 QUARTO_VERSION="1.7.32"
 QUARTO_DL_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
-QUARTO_DIR="/opt/quarto"
+QUARTO_DIR="$HOME/quarto"
 
 # Install Quarto
 echo "Installing Quarto v${QUARTO_VERSION}..."
