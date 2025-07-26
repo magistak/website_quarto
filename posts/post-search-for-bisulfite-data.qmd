@@ -1,0 +1,43 @@
+---
+title: "Search for bisulfite data"
+date: "2025-07-22"
+format: html
+---
+
+::: {.callout-note appearance="simple"}
+This post was originally published on [Medium](https://medium.com/@magistak/search-for-bisulfite-data-df631a69a446?source=rss-a03b6cfb1437------2). You can also read it there and leave comments.
+:::
+
+
+<p>The main methylation data types are bisulfite and array. I’ll focus on searching for bisulfite datasets.</p>
+<h3><strong>Query NCBI SRA advanced search</strong></h3>
+<p>With the SRA Advanced Search Builder:</p>
+<ul>
+<li>For field strategy, click Show index list, choose “bisulfite seq”</li>
+<li>click search, I filter for species and DNA on the next page</li>
+</ul>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*r6MZQIlBHq_SxNEYLIabJw.png"><figcaption><a href="https://www.ncbi.nlm.nih.gov/sra/advanced">https://www.ncbi.nlm.nih.gov/sra/advanced</a></figcaption></figure><h3><strong>Filter runs</strong></h3>
+<p>I filtered for source: DNA and Organism: Homo Sapiens</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*6sCL2H_PH7EYwW9cSqRKsw.png"><figcaption><a href="https://www.ncbi.nlm.nih.gov/sra">https://www.ncbi.nlm.nih.gov/sra</a></figcaption></figure><p>You can also search by modifying Search details. Mine right now:</p>
+<pre>"bisulfite seq"[Strategy] AND "Homo sapiens"[orgn] AND "biomol dna"[Properties]</pre>
+<p>You get the same results with this URL:</p>
+<pre>https://www.ncbi.nlm.nih.gov/sra?term=%22bisulfite%20seq%22%5BStrategy%5D%20AND%20%22Homo%20sapiens%22%5Borgn%5D%20AND%20%22biomol%20dna%22%5BProperties%5D&cmd=DetailsSearch</pre>
+<p>I got 54368 results as of 2025.07.23.</p>
+<h3>Send to SRA Run Selector</h3>
+<p>Click Send to -> Choose Destination: Run Selector</p>
+<p>This brings you to:</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ZTQI5HvM27jhl27cIy_RBA.png"><figcaption><a href="https://www.ncbi.nlm.nih.gov/Traces/study/?query_key=4&WebEnv=MCID_687f8c820ad1cd6f51d404fa&o=acc_s%3Aa">https://www.ncbi.nlm.nih.gov/Traces/study/?query_key=4&WebEnv=MCID_687f8c820ad1cd6f51d404fa&o=acc_s%3Aa</a></figcaption></figure><h3><strong>Download Metadata</strong></h3>
+<p>Click Download Metadata. You get a csv.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*yhpbx-6tRPvG4nVRKgryQg.png"><figcaption>csv downloaded from run selector</figcaption></figure><p>This contains metadata like Age for all runs. Not every dataset publishes age though.</p>
+<h3><strong>Process metadata</strong></h3>
+<p>My goal in this step was to find datasets with Age metadata from certain tissues. Unfortunately the metadata is not unified, it takes some work. I processed in R.</p>
+<pre>library(tidyverse)<br><br>df_read <- read_csv("data/sra_human_bisulfite.csv")<br><br>df <-<br>df_read %>% <br>  filter(!is.na(AGE)) %>% <br>  group_by(BioProject) %>% <br>  summarise(<br>    n=n(),<br>    unique_tissues = list(unique(tissue)),<br>    unique_celltype= list(unique(cell_type)),<br>    unique_tissue_cell_type = list(unique(`tissue/cell_type`)),<br>    unique_tissue_type = list(unique(tissue_type)),<br>    unique_sample_type= list(unique(sample_type)),<br>    unique_isolate= list(unique(isolate)),<br>    unique_age = list(unique(AGE)),<br>    unique_source_name = list(unique(source_name))<br>  ) %>% <br>  arrange(desc(n))</pre>
+<p>It aggregates them by dataset (BioProject) and sort them by sample number. I then investigated further the most interesting ones.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*hBIlCfYTUBD3QDAQSbbvxw.png"><figcaption>sra csv aggragated by BioProject</figcaption></figure><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=df631a69a446" width="1" height="1" alt="">
+
+
+---
+
+::: {.text-center}
+[**Read and Comment on Medium**](https://medium.com/@magistak/search-for-bisulfite-data-df631a69a446?source=rss-a03b6cfb1437------2){.btn .btn-primary .btn-lg target="_blank"}
+:::

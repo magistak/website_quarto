@@ -26,6 +26,16 @@ quarto --version
 echo "Installing TinyTeX..."
 quarto install tinytex
 
+# Generate Medium posts
+echo "Generating Medium posts..."
+python3 generate-posts.py
+
+# Update index with generated posts
+if [ -f "index-generated.qmd" ]; then
+    cp index-generated.qmd index.qmd
+    echo "Updated index.qmd with latest posts"
+fi
+
 # Render the site
 echo "Rendering site..."
 quarto render

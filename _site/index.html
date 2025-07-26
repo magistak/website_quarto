@@ -166,9 +166,26 @@ cookieconsent.run({
             window.netlifyIdentity.init();
             createAuthUI();
             
-            // Listen for auth state changes
-            ['login', 'logout', 'init'].forEach(event => {
-                window.netlifyIdentity.on(event, updateAuthUI);
+            // Listen for all relevant auth state changes
+            ['login', 'logout', 'init', 'open', 'close', 'error'].forEach(event => {
+                window.netlifyIdentity.on(event, (user) => {
+                    // Add different delays based on event type for OAuth compatibility
+                    const delay = event === 'close' ? 500 : event === 'login' ? 200 : 0;
+                    setTimeout(() => updateAuthUI(user), delay);
+                });
+            });
+            
+            // Handle page visibility changes (for OAuth redirects)
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    // Page became visible again (potentially after OAuth redirect)
+                    setTimeout(updateAuthUI, 300);
+                }
+            });
+            
+            // Handle window focus (for OAuth popup returns)
+            window.addEventListener('focus', function() {
+                setTimeout(updateAuthUI, 200);
             });
         }
     });
@@ -190,16 +207,24 @@ cookieconsent.run({
         }, 100);
     }
     
-    function updateAuthUI() {
+    function updateAuthUI(user) {
         const container = document.getElementById('custom-auth-container');
         if (!container) return;
         
-        const user = window.netlifyIdentity.currentUser();
+        // Get current user if not passed as parameter
+        const currentUser = user || window.netlifyIdentity.currentUser();
         
-        if (user) {
+        if (currentUser) {
+            // Handle different user metadata structures from various OAuth providers
+            const displayName = currentUser.user_metadata?.full_name || 
+                               currentUser.user_metadata?.name || 
+                               currentUser.app_metadata?.full_name ||
+                               currentUser.email?.split('@')[0] ||
+                               'User';
+            
             container.innerHTML = `
                 <div class="auth-buttons">
-                    <span class="user-info">Hello, ${user.user_metadata.full_name || user.email}!</span>
+                    <span class="user-info">Hello, ${displayName}!</span>
                     <button class="auth-btn logout" onclick="window.netlifyIdentity.logout()">Logout</button>
                 </div>`;
         } else {
@@ -424,8 +449,14 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#recent-posts" id="toc-recent-posts" class="nav-link active" data-scroll-target="#recent-posts">Recent Posts</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -450,15 +481,20 @@ cookieconsent.run({
 </header>
 
 
-<p>To view on Medium, visit <a href="https://medium.com/@magistak">medium.com/<span class="citation" data-cites="magistak">@magistak</span></a>.</p>
-<div id="retainable-rss-embed" data-rss="https://medium.com/feed/@magistak" data-maxcols="3" data-layout="grid" data-poststyle="inline" data-readmore="Read more" data-buttonclass="btn btn-primary" data-offset="0">
+<p>To view all posts on Medium, visit <a href="https://medium.com/@magistak">medium.com/<span class="citation" data-cites="magistak">@magistak</span></a>.</p>
+<section id="recent-posts" class="level2">
+<h2 class="anchored" data-anchor-id="recent-posts">Recent Posts</h2>
+<ul>
+<li><a href="posts/post-search-for-bisulfite-data.html"><strong>Search for bisulfite data</strong></a> - <em>2025-07-22</em></li>
+</ul>
+<p>The main methylation data types are bisulfite and array. I’ll focus on searching for bisulfite datasets. Query NCBI SRA advanced&nbsp;search With the SRA …</p>
+<hr>
+<p><em>All posts are also available on <a href="https://medium.com/@magistak">Medium</a> where you can leave comments and engage with the community.</em></p>
 
-</div>
 
-
+</section>
 
 </main> <!-- /main -->
-<script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

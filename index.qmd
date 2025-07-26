@@ -3,15 +3,16 @@ title: "My blog from Medium"
 format: html
 ---
 
-To view on Medium, visit [medium.com/@magistak](https://medium.com/@magistak).
+To view all posts on Medium, visit [medium.com/@magistak](https://medium.com/@magistak).
 
-```{=html}
-<div id="retainable-rss-embed"
-     data-rss="https://medium.com/feed/@magistak"
-     data-maxcols="3"
-     data-layout="grid"
-     data-poststyle="inline"
-     data-readmore="Read more"
-     data-buttonclass="btn btn-primary"
-     data-offset="0">
-</div>
+## Recent Posts
+
+- [**Search for bisulfite data**](posts/post-search-for-bisulfite-data.html) - *2025-07-22*  
+  
+The main methylation data types are bisulfite and array. I’ll focus on searching for bisulfite datasets.
+Query NCBI SRA advanced search
+With the SRA ...
+
+---
+
+*All posts are also available on [Medium](https://medium.com/@magistak) where you can leave comments and engage with the community.*

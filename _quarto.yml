@@ -36,7 +36,6 @@ format:
       dark: darkly
     css: styles.css
     toc: true
-    include-after-body: utils/medium-widget.html
     include-in-header: utils/auth-widget.html
 
 pdf:
