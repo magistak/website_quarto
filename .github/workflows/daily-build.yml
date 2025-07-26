@@ -1,0 +1,29 @@
+name: Daily Netlify Build
+
+on:
+  schedule:
+    # Run daily at 5:17 AM UTC (adjust as needed)
+    - cron: '17 5 * * *'
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  trigger-netlify-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Build
+        run: |
+          echo "Triggering daily Netlify build..."
+          response=$(curl -s -w "%{http_code}" -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }})
+          http_code="${response: -3}"
+          
+          if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ]; then
+            echo "✅ Netlify build triggered successfully!"
+          else
+            echo "❌ Failed to trigger Netlify build. HTTP status: $http_code"
+            exit 1
+          fi
+      
+      - name: Log build trigger
+        run: |
+          echo "Daily build triggered at $(date)"
+          echo "Next scheduled build: $(date -d '+1 day' -u '+%Y-%m-%d %H:%M:%S UTC')"
