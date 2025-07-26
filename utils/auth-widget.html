@@ -1,4 +1,3 @@
-<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
     .auth-buttons {
         display: flex;
@@ -27,13 +26,13 @@
         border-radius: 0.25rem;
         font-size: 0.875rem;
         cursor: pointer;
+        text-decoration: none;
         transition: all 0.2s ease;
     }
     
     .auth-btn:hover {
         background: var(--bs-primary-dark, #0056b3);
         color: white;
-        text-decoration: none;
     }
     
     .auth-btn.logout {
@@ -51,25 +50,48 @@
         font-size: 0.875rem;
         margin-right: 0.5rem;
     }
-    
-    [data-netlify-identity-menu] {
-        display: none !important;
-    }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.init();
-            createAuthUI();
-            
-            // Listen for auth state changes
-            ['login', 'logout', 'init'].forEach(event => {
-                window.netlifyIdentity.on(event, updateAuthUI);
-            });
+    // Function to parse JWT tokens
+    function parseJwt(token) {
+        try {
+            return JSON.parse(atob(token.split('.')[1]));
+        } catch (e) {
+            return null;
         }
-    });
-    
+    }
+
+    // Function to get a cookie by name
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function updateAuthUI() {
+        const container = document.getElementById('custom-auth-container');
+        if (!container) return;
+
+        const jwt = getCookie('nf_jwt');
+        const user = jwt ? parseJwt(jwt) : null;
+
+        if (user && user.app_metadata.provider === 'auth0') {
+            // User is logged in with Auth0
+            container.innerHTML = `
+                <div class="auth-buttons">
+                    <span class="user-info">Hello, ${user.user_metadata.full_name || user.email}!</span>
+                    <a href="/.netlify/auth/logout" class="auth-btn logout">Logout</a>
+                </div>`;
+        } else {
+            // User is not logged in
+            container.innerHTML = `
+                <div class="auth-buttons">
+                    <a href="/.netlify/auth/login?provider=auth0" class="auth-btn">Login with Auth0</a>
+                </div>`;
+        }
+    }
+
     function createAuthUI() {
         setTimeout(() => {
             const navbar = document.querySelector('.navbar-nav') || 
@@ -86,25 +108,6 @@
             updateAuthUI();
         }, 100);
     }
-    
-    function updateAuthUI() {
-        const container = document.getElementById('custom-auth-container');
-        if (!container) return;
-        
-        const user = window.netlifyIdentity.currentUser();
-        
-        if (user) {
-            container.innerHTML = `
-                <div class="auth-buttons">
-                    <span class="user-info">Hello, ${user.user_metadata.full_name || user.email}!</span>
-                    <button class="auth-btn logout" onclick="window.netlifyIdentity.logout()">Logout</button>
-                </div>`;
-        } else {
-            container.innerHTML = `
-                <div class="auth-buttons">
-                    <button class="auth-btn" onclick="window.netlifyIdentity.open('login')">Login</button>
-                    <button class="auth-btn" onclick="window.netlifyIdentity.open('signup')">Sign Up</button>
-                </div>`;
-        }
-    }
+
+    document.addEventListener('DOMContentLoaded', createAuthUI);
 </script>
