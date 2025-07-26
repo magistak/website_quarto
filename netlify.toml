@@ -3,7 +3,7 @@ publish = "_site"
 command = "quarto render"
 
 [build.environment]
-QUARTO_VERSION = "1.7.32"
+QUARTO_VERSION = "v1.7.32"
 
 [[plugins]]
 package = "@quarto/netlify-plugin-quarto"
