@@ -12,5 +12,8 @@
   "cv.qmd": {
     "cv.html": "33ba8b2f",
     "cv.tex": "28facc75"
+  },
+  "blog.qmd": {
+    "blog.html": "4fa0db00"
   }
 }

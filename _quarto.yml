@@ -6,6 +6,12 @@ project:
 website:
   title: "István Magyary"
   favicon: images/favicon.ico
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Blog
+        href: blog.html 
   twitter-card: true
   open-graph: true
   google-analytics:
@@ -13,10 +19,6 @@ website:
     anonymize-ip: true
   cookie-consent: 
     palette: dark
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
   page-footer: 
     left: "Created by István Magyary"
     right: "© 2025"
@@ -34,6 +36,7 @@ format:
       dark: darkly
     css: styles.css
     toc: true
+    include-after-body: utils/medium-widget.html
 
 pdf:
   toc: false
