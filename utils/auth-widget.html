@@ -53,7 +53,32 @@
 </style>
 
 <script>
-    // Function to parse JWT tokens
+    // Check if user is authenticated via Auth0 integration
+    function isAuthenticated() {
+        // With Auth0 integration, check for JWT token in cookies
+        const jwt = getCookie('nf_jwt');
+        return jwt && jwt !== '';
+    }
+
+    function getUser() {
+        const jwt = getCookie('nf_jwt');
+        if (jwt) {
+            try {
+                const decoded = parseJwt(jwt);
+                return decoded;
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
     function parseJwt(token) {
         try {
             return JSON.parse(atob(token.split('.')[1]));
@@ -62,32 +87,23 @@
         }
     }
 
-    // Function to get a cookie by name
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
     function updateAuthUI() {
         const container = document.getElementById('custom-auth-container');
         if (!container) return;
 
-        const jwt = getCookie('nf_jwt');
-        const user = jwt ? parseJwt(jwt) : null;
-
-        if (user && user.app_metadata.provider === 'auth0') {
-            // User is logged in with Auth0
+        if (isAuthenticated()) {
+            const user = getUser();
+            const displayName = user?.name || user?.email || user?.nickname || 'User';
+            
             container.innerHTML = `
                 <div class="auth-buttons">
-                    <span class="user-info">Hello, ${user.user_metadata.full_name || user.email}!</span>
+                    <span class="user-info">Hello, ${displayName}!</span>
                     <a href="/.netlify/auth/logout" class="auth-btn logout">Logout</a>
                 </div>`;
         } else {
-            // User is not logged in
             container.innerHTML = `
                 <div class="auth-buttons">
-                    <a href="/.netlify/auth/login?provider=auth0" class="auth-btn">Login with Auth0</a>
+                    <a href="/.netlify/auth/login" class="auth-btn">Login with Auth0</a>
                 </div>`;
         }
     }
