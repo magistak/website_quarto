@@ -2,11 +2,10 @@
 
 echo "🔄 Fetching latest Medium posts and generating pages..."
 
-# Remove old generated post files (keep originals)
-rm -f posts/post-*.qmd
+# Remove only the temporary index file
 rm -f index-generated.qmd
 
-# Generate new posts
+# Generate new posts (will skip existing ones)
 python3 generate-posts.py
 
 if [ $? -eq 0 ]; then

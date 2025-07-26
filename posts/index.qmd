@@ -1,0 +1,16 @@
+---
+title: "All Posts"
+format: html
+listing:
+  contents: "*.qmd"
+  sort: "date desc"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [date, title, description]
+---
+
+# All Blog Posts
+
+Here are all my blog posts from Medium. Each post is also available on [Medium](https://medium.com/@magistak) where you can leave comments and engage with the community.

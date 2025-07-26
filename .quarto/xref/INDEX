@@ -31,5 +31,11 @@
   },
   "posts/post-search-for-bisulfite-data.qmd": {
     "post-search-for-bisulfite-data.html": "f2f19aa5"
+  },
+  "posts/index.qmd": {
+    "index.html": "33ad5cb9"
+  },
+  "index-backup.qmd": {
+    "index-backup.html": "fc764a58"
   }
 }

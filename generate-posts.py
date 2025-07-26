@@ -43,6 +43,12 @@ def clean_content(html):
     # Remove style attributes
     html = re.sub(r'style="[^"]*"', '', html, flags=re.IGNORECASE)
     
+    # Fix image sizing for mobile - make all images responsive
+    html = re.sub(r'<img([^>]*?)>', r'<img\1 style="max-width: 100%; height: auto;">', html, flags=re.IGNORECASE)
+    
+    # Also handle figure tags
+    html = re.sub(r'<figure([^>]*?)>', r'<figure\1 style="max-width: 100%; text-align: center;">', html, flags=re.IGNORECASE)
+    
     # Decode HTML entities
     html = unescape(html)
     
@@ -52,6 +58,46 @@ def generate_post_file(post):
     """Generate Quarto file for a single post"""
     slug = create_slug(post['title'])
     filename = f"posts/post-{slug}.qmd"
+    
+    # Skip if file already exists (for faster builds)
+    if os.path.exists(filename):
+        print(f"Skipped (exists): {filename}")
+        # Still return the post info for index generation
+        from datetime import datetime
+        try:
+            date_obj = datetime.strptime(post['pubDate'], '%Y-%m-%d %H:%M:%S')
+            formatted_date = date_obj.strftime('%Y-%m-%d')
+        except:
+            formatted_date = post['pubDate'][:10]  # fallback
+        
+        return {
+            'title': post['title'],
+            'slug': slug,
+            'filename': filename,
+            'date': formatted_date,
+            'link': post['link'],
+            'description': re.sub(r'<[^>]+>', '', post.get('description', ''))[:150] + '...'
+        }
+    
+    # Skip if file already exists
+    if os.path.exists(filename):
+        print(f"Skipped (exists): {filename}")
+        # Still return the post info for index generation
+        from datetime import datetime
+        try:
+            date_obj = datetime.strptime(post['pubDate'], '%Y-%m-%d %H:%M:%S')
+            formatted_date = date_obj.strftime('%Y-%m-%d')
+        except:
+            formatted_date = post['pubDate'][:10]
+        
+        return {
+            'title': post['title'],
+            'slug': slug,
+            'filename': filename,
+            'date': formatted_date,
+            'link': post['link'],
+            'description': re.sub(r'<[^>]+>', '', post.get('description', ''))[:150] + '...'
+        }
     
     # Format date
     from datetime import datetime
@@ -117,6 +163,8 @@ format: html
 ---
 
 To view all posts on Medium, visit [medium.com/@magistak](https://medium.com/@magistak).
+
+📚 [**Browse all posts**](posts/) organized with search and filtering.
 
 ## Recent Posts
 
