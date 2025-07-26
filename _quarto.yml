@@ -8,10 +8,10 @@ website:
   favicon: images/favicon.ico
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - text: Blog
-        href: blog.html 
+      - href: index.html
+        text: "Blog" 
+      - href: about.qmd
+        text: "About me"
   twitter-card: true
   open-graph: true
   google-analytics:

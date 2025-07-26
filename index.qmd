@@ -1,98 +1,17 @@
 ---
-format:
-  html: default
-  pdf: default
+title: "My blog from Medium"
+format: html
 ---
 
-::: {.content-visible when-format="html"}
+To view on Medium, visit [medium.com/@magistak](https://medium.com/@magistak).
 
-# Welcome to My site!
-
-[Download my CV](index.pdf)
-
-:::
-
-# István Gellért Magyary
-
-::: {.columns}
-
-::: {.column width="40%"}
-![](images/me_circle.png){.img-fluid}
-:::
-
-::: {.column width="60%"}
-**MSc Bioinformatics Student**  
-📍 Budapest, Hungary  
-📧 magyary.istvan@brc.hu  
-📞 +36 30 226 2205  
-[Website](https://magyaryistvan.hu) | [LinkedIn](https://www.linkedin.com/in/istvan-magyary/) | [GitHub](https://github.com/magistak) | [Medium](https://medium.com/@magistak) | [Buy me a coffee](https://coff.ee/magyary)
-:::
-
-:::
-
----
-
-
-## 🎓 Education
-
-**MSc in Bioinformatics**  
-*Pázmány Péter Catholic University (2024– )*  
-**Thesis title:** Epigenetic rejuvenation during embryogenesis  
-**Relevant coursework:** Data Mining and Machine Learning, Biostatistics, Parallel Programming, Quantitative Biology, Scientific Python
-
-**BSc in Biology**  
-*University of Szeged (2024)*  
-**Thesis title:** Investigating the Relationship Between the Human Metabolome and Diseases Using the UK Biobank Dataset
-
----
-
-## 🧬 Professional & Research Experience
-
-**Research Student**  
-*BRC, Szeged / Computational Systems Biology Lab*  
-*2021–2025*  
-- Developed predictive survival models for multiple disease and metabolite level associations
-
----
-
-## 🗣️ Languages
-
-- **English:** Fluent (C1 certificate)
-
----
-
-## 📢 Publications
-
-- *Poster:* Lilla Széles, István Magyary et al.  
-  **What does the evolution of the mammalian metabolome reveal about human diseases?**  
-  Straub-Days, 2023
-
-- *Poster:* István Magyary et al.  
-  **Different shapes of blood biomarker and disease risk relationships**  
-  Straub-Days, 2025
-
----
-
-## 🏆 Achievements & Awards
-
-- **2021–2025:** National Academy of Scientific Education – Szent-Gyögyi Student Fellowship
-- **2023 Autumn:** SZTE Local Medical TDK – Participation
-- **2024 Spring:** SZTE Local Biology TDK – Finalist
-- **2025:** Biology OTDK – Participation
-
----
-
-## 🧠 Technical Skills
-
-- **Programming:** Python (NumPy, Pandas, scikit-learn, PyTorch), R (tidyverse)
-- **Data Analysis:** Multi-modal integration (EHR, omics), statistical modeling
-- **Tools:** Jupyter Notebook, Git, Linux/HPC
-
----
-
-## 🤝 Volunteer & Teaching Experience
-
-- Student mentoring at **HÖOK Mentorprogram**
-- Scouting – Patrol leader at **Kaposvár** (2015–2024)
-
-
+```{=html}
+<div id="retainable-rss-embed"
+     data-rss="https://medium.com/feed/@magistak"
+     data-maxcols="3"
+     data-layout="grid"
+     data-poststyle="inline"
+     data-readmore="Read more"
+     data-buttonclass="btn btn-primary"
+     data-offset="0">
+</div>
