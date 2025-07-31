@@ -18,6 +18,8 @@ website:
         text: "Blog" 
       - href: about.qmd
         text: "About me"
+      - href: thingsilike.qmd
+        text: "Things I like"
   twitter-card: true
   open-graph: true
   google-analytics:
