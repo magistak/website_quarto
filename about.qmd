@@ -54,6 +54,11 @@ format:
 *2021–2025*  
 - Developed predictive survival models for multiple disease and metabolite level associations
 
+**Research Student**  
+*SZTAKI, Budapest / BioAgeAI research group*  
+*2025-*  
+- Investigation of Epigenetic Rejuvenation During Embryogenesis
+
 ---
 
 ## 🗣️ Languages
