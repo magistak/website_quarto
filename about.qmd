@@ -24,7 +24,7 @@ format:
 ::: {.column width="60%"}
 **MSc Bioinformatics Student**  
 📍 Budapest, Hungary  
-📧 magyary.istvan@brc.hu  
+📧 magyary@sztaki.hu  
 📞 +36 30 226 2205  
 [Website](https://magyaryistvan.hu){.btn .btn-secondary .btn-sm .align-middle} | [LinkedIn](https://www.linkedin.com/in/istvan-magyary/){.btn .btn-secondary .btn-sm .align-middle} | [GitHub](https://github.com/magistak){.btn .btn-secondary .btn-sm .align-middle} | [Medium](https://medium.com/@magistak){.btn .btn-secondary .btn-sm .align-middle} | [Buy me a coffee](https://coff.ee/magyary){.btn .btn-secondary .btn-sm .align-middle}
 :::
