@@ -1,17 +1,5 @@
 ---
-format: live-html
-pyodide:
-    packages:
-        - ipywidgets
-    
-
+title: "Game"
 ---
 
-```{pyodide}
-
-```
-
-
-```{pyodide}
-
-```
+Welcome to the game page.
