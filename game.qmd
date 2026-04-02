@@ -1,0 +1,17 @@
+---
+format: live-html
+pyodide:
+    packages:
+        - ipywidgets
+    
+
+---
+
+```{pyodide}
+
+```
+
+
+```{pyodide}
+
+```
